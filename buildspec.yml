@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo 'Phase "install"'
+      - npm install
+
+  pre_build:
+    commands:
+      - echo 'Phase "pre_build"'
+      - npm run test
+      - rm -rf ./node_modules
+
+  build:
+    commands:
+      - echo 'Phase "build"'
+      - npm install --production
+      - npm run build
+
+reports:
+  reportGroupJunit:
+    files:
+      - "output/junit.xml"
+    file-format: JUNITXML
+    discard-paths: yes
