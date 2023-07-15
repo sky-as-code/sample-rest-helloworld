@@ -12,13 +12,13 @@ phases:
     commands:
       - echo 'Phase "pre_build"'
       - npm run test
-      - rm -rf ./node_modules
 
   build:
     commands:
       - echo 'Phase "build"'
-      - npm install --production
       - npm run build
+      - rm -rf ./node_modules
+      - npm install --production
 
 reports:
   reportGroupJunit:
